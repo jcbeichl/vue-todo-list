@@ -1,0 +1,307 @@
+@import "abstracts/variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "montserrat", sans-serif;
+}
+
+body {
+  background: $light;
+  color: $dark;
+}
+
+input {
+  &:not([type="radio"]):not([type="checkbox"]) {
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: initial;
+  }
+}
+
+input {
+  &[type="radio"] {
+    display: none;
+  }
+  &[type="checkbox"] {
+    display: none;
+  }
+}
+
+button {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+}
+
+section {
+  margin: 2rem 0;
+  padding: 0 1.5rem;
+
+  & h3 {
+    color: $dark;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  & h4 {
+    color: $grey;
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* greetings section */
+.greeting,
+.greeting input {
+  color: $dark;
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  & .title {
+    display: flex;
+
+    & input {
+      margin-left: 0.5rem;
+      flex: 1 1 0%;
+      min-width: 0;
+    } //input
+  } //title
+} //greeting
+
+/* create todo */
+.create-todo {
+  & input[type="text"] {
+    display: block;
+    width: 100%;
+    font-size: 1.25rem;
+    padding: 1rem 1.5rem;
+    color: $dark;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: $shadow;
+    margin-bottom: 1.5rem;
+  } //input[type="text"]
+
+  & .options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    & label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: $shadow;
+      cursor: pointer;
+
+      & .bubble {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid;
+
+        &.bubble-business {
+          border-color: $business;
+          box-shadow: $business-glow;
+
+          &::after {
+            content: "";
+            display: block;
+            opacity: 0;
+            width: 0px;
+            height: 0px;
+            background-color: $business;
+            transition: 0.2s ease-in-out;
+          } //after
+        } //bubble-business
+
+        &.bubble-personal {
+          border-color: $personal;
+          box-shadow: $personal-glow;
+
+          &::after {
+            content: "";
+            display: block;
+            opacity: 0;
+            width: 0px;
+            height: 0px;
+            background-color: $personal;
+            transition: 0.2s ease-in-out;
+          } //after
+        } //bubble-personal
+      } //bubble
+
+      input:checked ~ .bubble.bubble-business::after {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        opacity: 1;
+      }
+
+      input:checked ~ .bubble.bubble-personal::after {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        opacity: 1;
+      }
+
+      & .bubble-label {
+        color: $dark;
+        font-size: 1.125rem;
+        margin-top: 1rem;
+      }
+    } //label
+  } //options
+
+  & input[type="submit"] {
+    display: block;
+    width: 100%;
+    font-size: 1.125rem;
+    padding: 1rem 1.5rem;
+    color: white;
+    background-color: $primary;
+    border-radius: 0.5rem;
+    box-shadow: $personal-glow;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  } //input[type="submit"]
+} //create-todo
+
+/* todo list */
+.todo-list {
+  & .list {
+    margin: 1rem 0;
+
+    & .todo-item {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: $shadow;
+      margin-bottom: 1rem;
+
+      & label {
+        display: block;
+        margin-right: 1rem;
+        cursor: pointer;
+
+        & .bubble {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          border: 2px solid;
+
+          &.bubble-business {
+            border-color: $business;
+            box-shadow: $business-glow;
+
+            &::after {
+              content: "";
+              display: block;
+              opacity: 0;
+              width: 0px;
+              height: 0px;
+              background-color: $business;
+              transition: 0.2s ease-in-out;
+            } //after
+          } //bubble-business
+
+          &.bubble-personal {
+            border-color: $personal;
+            box-shadow: $personal-glow;
+
+            &::after {
+              content: "";
+              display: block;
+              opacity: 0;
+              width: 0px;
+              height: 0px;
+              background-color: $personal;
+              transition: 0.2s ease-in-out;
+            } //after
+          } //bubble-personal
+        } //bubble
+
+        input:checked ~ .bubble.bubble-business::after {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          opacity: 1;
+        }
+
+        input:checked ~ .bubble.bubble-personal::after {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          opacity: 1;
+        }
+      } //label
+
+      & .todo-content {
+        flex: 1 1 0%;
+
+        & input {
+          color: $dark;
+          font-size: 1.125rem;
+        } //input
+      } //.todo-content
+
+      & .actions {
+        display: flex;
+        align-items: center;
+
+        & button {
+          display: block;
+          padding: 0.5rem;
+          border-radius: 0.25rem;
+          color: white;
+          background-color: $danger;
+          cursor: pointer;
+          transition: 0.2s ease-in-out;
+
+          &:hover {
+            opacity: 0.75;
+          } //:hover
+        } //button
+
+        & .edit {
+          margin-right: 0.5rem;
+          background-color: $primary;
+        } //& .edit
+      } //.actions
+
+      &.done {
+        & .todo-content {
+          & input {
+            text-decoration: line-through;
+            color: $grey;
+          } //input
+        } //todo-content
+      } //.done
+    } //.todo-item
+  } //.list
+} //.todo-list
